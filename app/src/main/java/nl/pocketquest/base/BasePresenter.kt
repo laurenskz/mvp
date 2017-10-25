@@ -16,7 +16,7 @@ abstract class BasePresenter<V> : RxFragment(), IContextProvider {
 
     final override fun onCreateView(
             inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
+        context
         val view = view ?: return null
         onViewCreated(view, savedInstanceState)
         return null

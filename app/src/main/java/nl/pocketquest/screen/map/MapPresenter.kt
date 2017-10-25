@@ -1,23 +1,19 @@
-package nl.pocketquest.screen.main
+package nl.pocketquest.screen.map
 
 import android.os.Bundle
 import cn.nekocode.itempool.Item
 import cn.nekocode.itempool.ItemPool
-import nl.pocketquest.base.BasePresenter
-import nl.pocketquest.data.DO.Meizi
-import nl.pocketquest.data.service.GankService
-import nl.pocketquest.item.MeiziItem
 import com.github.yamamotoj.pikkel.Pikkel
 import com.github.yamamotoj.pikkel.PikkelDelegate
-import com.trello.rxlifecycle2.kotlin.bindToLifecycle
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.processors.BehaviorProcessor
-import io.reactivex.rxkotlin.zipWith
 import io.reactivex.schedulers.Schedulers
-import kotlin.collections.ArrayList
+import nl.pocketquest.base.BasePresenter
+import nl.pocketquest.data.DO.Meizi
+import nl.pocketquest.data.service.GankService
 
-class MainPresenter : BasePresenter<Contract.View>(), Contract.Presenter, Pikkel by PikkelDelegate() {
+class MapPresenter : BasePresenter<Contract.View>(), Contract.Presenter, Pikkel by PikkelDelegate() {
     var list by state<ArrayList<Meizi>?>(null)
     var itemPool = ItemPool()
     var viewBehavior = BehaviorProcessor.create<Contract.View>()!!
@@ -36,7 +32,6 @@ class MainPresenter : BasePresenter<Contract.View>(), Contract.Presenter, Pikkel
                 }
             }
         }
-
         if (list == null) {
             GankService.getMeizis(50, 1)
         } else {

@@ -37,6 +37,7 @@ abstract class BaseActivity : RxAppCompatActivity(), IContextProvider {
 
     inner class PresenterFactory(val trans: FragmentTransaction) {
 
+        inline fun <reified T: BasePresenter<*>> createOrGet(args: Bundle? = null) = createOrGet(T::class.java, args)
         fun <T : BasePresenter<*>> createOrGet(presenterClass: Class<T>, args: Bundle? = null): T {
             val _args = if (intent.extras != null) Bundle(intent.extras) else Bundle()
             if (args != null) _args.putAll(args)

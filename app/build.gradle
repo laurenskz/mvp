@@ -39,7 +39,8 @@ android {
     }
 
     lintOptions {
-        disable 'GoogleAppIndexingWarning', 'UnusedResources' // Lint still does not detect usage of resources from Kotlin code.
+        disable 'GoogleAppIndexingWarning', 'UnusedResources'
+        // Lint still does not detect usage of resources from Kotlin code.
     }
 }
 
@@ -77,6 +78,16 @@ dependencies {
     compile "com.squareup.picasso:picasso:2.5.2"
     compile "com.github.nekocode:Meepo:0.1.5"
     compile "com.github.nekocode:ItemPool:0.5.4"
+
+    // Mapbox
+    compile('com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.1.0') {
+        exclude group: 'com.android.support'
+        exclude group: 'android.arch.lifecycle'
+    }
+    compile('com.mapbox.mapboxsdk:mapbox-android-sdk:5.2.0-beta.1@aar') {
+        transitive = true
+        exclude group: 'com.android.support'
+    }
 
     compile "org.jetbrains.kotlin:kotlin-stdlib:$KOTLIN_VERSION"
 }
